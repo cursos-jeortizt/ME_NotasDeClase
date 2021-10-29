@@ -1,10 +1,109 @@
+% Juan Camilo Cárdenas Gómez
+\chapter{SIMULACIÓN ESTADÍSTICA Y COVERGENCIA}
 
-%\chapter{MUESTREO Y DISTRIBUCIONES MUESTRALES}
-%\chapter{ESTIMACIÓN PUNTUAL Y POR INTERVALOS}
-%\chapter{ESTIMACIÓN PUNTUAL Y POR INTERVALOS}
-%\chapter{PRUEBA DE HIPÓTESIS}
-%\chapter{CONVERGENCIA Y TEOREMAS LÍMITE}
+\floatname{algorithm}{Algoritmo}
+\renewcommand{\theequation}{\arabic{chapter}|\arabic{equation}}
+\renewcommand{\thealgorithm}{\arabic{chapter}|\arabic{algorithm}}
+\renewcommand{\theexample}{\arabic{chapter}|\arabic{example}}
 
-%Alejandro Avila
-\chapter{Redes adaptativas de autómatas}
+\algrenewcommand\algorithmicreturn{\textit{RETORNAR}}
+\algrenewcommand\algorithmicloop{\textit{INICIO}}
+\algrenewcommand\algorithmicwhile{\textit{MIENTRAS}}
+\algrenewcommand\algorithmicdo{\textit{HACER}}
 
+En este capítulo se presentan dos temas fundamentales en el desarrollo del sistema MIA. El primero hace alusión a la arquitectura algorítmica básica necesaria para obtener datos de \emph{buena calidad}  (estadística) puesto que la inferencia y decisiones se soportan en ellos. El segundo tema, no menos importante que el primero, tiene que ver con la determinación del número de simulaciones necesario para asegurar esa calidad requerida.
+
+Para garantizar el primero en el sistema MIA se estableció (y adaptó) el procedimiento general de simulación estadística propuesto en (Ortiz Triviño, 2010) mientras que para el segundo se aplicaron la ley de los grandes números y el teorema del límite central descritos en (Mood, Graybill \& Boes, 1974).
+
+\section{ARQUITECTURA DE UN SIMULADOR SIMPLE}
+
+El cálculo de la estimación de un valor de un estimador para un indicador se obtiene a partir de una (sub) muestra aleatoria de las variables de estado del sistema. Esto es, si $\{ X_i \}_{i=1}^{i=n}$ es el conjunto de variables de estado del sistema y $\beta_k$ con $k=1,2,\cdots,m$ es el \emph{k-ésimo} indicador, se cumple la expresión \ref{exp_1}.  Por esa razón se hace indispensable la implementación de un procedimiento adecuado para obtener las muestras respectivas (Ortiz Triviño, 2010).
+
+\begin{equation} \label{exp_1}
+\begin{split}
+\hat{\beta}_k: \quad&\ \ \ \ \ \mathbb{R}^n\quad\ \rightarrow\ \ \qquad\ \ \ \ \mathbb{R} \\
+\quad&\{ X_i \}_{i=1}^{i=n}\ \ \rightarrow\ \ \hat{\beta}_k = \hat{\beta}_k (\{ x_i \}_{i=1}^{i=n})
+\end{split}
+\end{equation}
+
+\subsection{Una simulación}
+
+De acuerdo con (Ortiz Triviño, 2010), el nivel más bajo en el proceso de simulación consiste en obtener un valor aproximado de la variable (de estado) aleatoria involucrada, es decir, implementar un algoritmo que permita obtener un valor (estimado) de la estadística utilizada para aproximar la respuesta pedida. La fisonomía del algoritmo puede ser como la del Algoritmo \ref{algo_1}.
+
+\algrenewcommand\algorithmicfunction{$\langle Tipo\_Dato\rangle\ \textit{FUNCION}$}
+
+\begin{algorithm}
+\begin{algorithmic}[0]
+\Function{$\langle Simulaci\acute{o}n\_i-\acute{e}sima\rangle$}{$\langle lista\_de\_par\acute{a}metros\rangle$}
+    \Loop
+        \State $\langle Instrucci\acute{o}n\ 1\rangle;$
+        \State $\langle Instrucci\acute{o}n\ 2\rangle;$
+        \State \qquad \vdots
+        \State $\langle Instrucci\acute{o}n\ n\rangle;$
+        \State $x \gets g(\text{\textbullet});$
+        \State \Return $(X);$
+    \EndLoop \State $FIN\_ALGORITMO\ \_\langle Simulaci\acute{o}n\_i-\acute{e}sima\ \rangle$
+\EndFunction
+\end{algorithmic}
+\caption{\!\textbf{: Simulación de un dato (Adaptado de }(Ortiz Triviño, 2010)\textbf{)}}\label{algo_1}
+\end{algorithm}
+
+La estructura interna del algoritmo dependerá totalmente del indicador a simular, sin embargo, es usual que en este nivel se retorne el valor de una variable aleatoria $X$.
+
+\subsection{Muestra aleatoria artificial}
+
+Luego de haber diseñado el simulador básico debe utilizarse repetidamente para generar un vector de valores de la variable aleatoria en estudio, el fin, como seguramente puede suponer, es encontrar un conjunto de $n$ valores\footnote{Se suele considerar un buen número a $n\geq30.$} (suficientemente  grande\footnote{El teorema del límite central se desarrolla en detalle en el capítulo de Teoría Asintótica.}) de la variable $X$. El Algoritmo \ref{algo_2}  representa este caso.
+
+\subsection{Procedimiento general de simulación estadística}
+
+Tradicionalmente, se ha empleado simulación, principalmente, en campos de la investigación de operaciones.  Allí existen problemas en los cuales encontrar su solución es demasiado complejo y/o es muy costosa. Es justamente en esos casos cuando el ingeniero acude a herramientas como ésta para \textit{aproximar} la solución al problema.
+
+Por lo anterior es conveniente hacer una distinción en la forma de solucionar un problema.  En lo que a este texto respecta, se distinguen dos formas esenciales: Métodos \textit{analíticos}, de un lado, y \textit{Métodos de Simulación}, del otro.  En el primer caso, la respuesta se encuentra luego de una aplicación sistemática del cálculo, la estadística, la teoría de probabilidades, el álgebra, etc.  Por el otro lado, en cambio,  se imita normalmente a través de números aleatorios, el comportamiento del sistema (implícito en el enunciado del problema) se miden sus variables de interés en cada experimento, se construyen estadísticas apropiadas que ayuden a aproximar la respuesta que se está buscando y, finalmente,  se busca aplicar  teoremas límites que  validen aún más los resultados.
+
+\algrenewcommand\algorithmicfunction{$\uparrow Vector\ \textit{FUNCION}$}
+
+\begin{algorithm} 
+\begin{algorithmic}[0] 
+\Function{$\langle Simulaci\acute{o}n \_Vector\rangle$}{$n \in \mathbb{N}$}
+    \Loop
+        \State $i \gets 1;$
+        \While{$(i < n)$} 
+            \Loop
+                \State $X[i] \gets \textit{Simulación\_i-ésima}(\langle \textit{lista\_de\_parámetros}\rangle);$
+                \State $i \gets i + 1;$
+            \EndLoop \State $\textit{FIN \_MIENTRAS}$
+        \EndWhile
+        \State \Return $(\uparrow X);$
+    \EndLoop \State $\textit{FIN\_ALGORITMO} \_\langle\textit{Simulación\ \_Vector}\rangle$
+\EndFunction
+\end{algorithmic}
+\caption{\!\!\textbf{: Simulación de  una muestra aleatoria artificial (Adaptado de} (Ortiz Triviño, 2010)\textbf{)}}\label{algo_2}
+\end{algorithm}
+
+Formalmente hablando, Sea $X$ una variable aleatoria con función de distribución $F(X)$ y sea $\theta(F)$ una característica de la población $F(X)$. Para evaluar la característica  $\theta(F)$ existen, cuando menos, dos caminos: (1) Calcular exactamente  $\theta(F)$, es decir, encontrar la solución analítica;  y  (2) Estimar, normalmente mediante simulación, el valor de  $\theta(F)$, en este caso se debe construir una estadística  $\hat{\theta}(F)$ apropiada.
+
+Cuando se usa el segundo camino, se aplican los siguientes pasos (Ortiz Triviño, 2010):
+
+\begin{enumerate}
+    \item Encontar la función percentil $X = F_x^{-1}(U)$
+    \item Obtener una muestra aleatoria de tamaño $n, X_1, X_2, \cdots, X_n$, de la población $F_x(x)$
+    \item Calcular $\theta(F_x)\approx\hat{\theta}(\{X_i\}_{i=1}^{i=n})$
+\end{enumerate}
+
+Al final de este procedimiento se tiene una aproximación a la respuesta deseada, sin embargo, debe notarse que $\hat{\theta}(F)$ es en sí misma una variable aleatoria y, en consecuencia, debe tener una función de distribución $F_{\hat{\theta}}(\omega)$ asociada (lamentablemente cuyo comportamiento específico se desconoce en la mayoría de los casos). Sin embargo $\theta(F_x)$ es una constante pero desconocida.
+
+La metodología descrita se denomina \textit{Procedimiento general de simulación estadística} y se denota por $\textit{PGSE}(\theta,F_x,m,n)$.
+
+El conocimiento explícito de $\theta(F_x)$ se denomina solución analítica mientras la aproximación $\hat{\theta}(F)$ se conoce como solución simulada. Un ejemplo extraído de la teoría de probabilidades ilustra el concepto de \textit{solución analítica} vs \textit{solución numérica}.
+
+El  Ejemplo \ref{exa_1} ilustra la filosofía de la simulación y la forma de empleo de la metodología propuesta.
+
+
+
+% \newcommand{\example}{\subsubsection}
+
+% \example{} \label{exa_1}
+
+\example{holo}\label{exa_1}
+
+\example
