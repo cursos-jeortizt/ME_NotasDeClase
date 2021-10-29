@@ -1,2 +1,343 @@
-\chapter{MUESTREO}
-\chapter{ESTIMACIÓN PUNTUAL Y POR INTERVALOS}
+ \chapter{Distribuciones de funciones de variables aleatorias}
+
+ \section{INTRODUCCIÓN Y RESUMEN}
+
+Como indica el título de este capítulo, estamos interesados en encontrar la distribución de funciones de variables aleatorias. Más precisamente, para una variable aleatoria, digamos $X_{1}, X_{2}, \ldots, X_{n},$ y funciones dadas de las n variables aleatorias dadas,digamos $g_{1}(\cdot, \ldots, \cdot), g_{2}(\cdot, \ldots, \cdot), \ldots, g_{k}(\cdot, \ldots, \cdot),$ queremos, en general, encontrar la distribución conjunta de $Y_{1}, Y_{2}, \ldots, Y_{k},$ donde $Y_{j}=g_{j}\left(X_{1}, \ldots, X_{n}\right), j=1,2, \ldots, k$
+Si la densidad conjunta de las variables aleatorias $X_{1}, X_{2}, \ldots, X_{n}$  entonces, teóricamente al menos, podemos encontrar la distribución conjunta de $Y_{1}, Y_{2}, \ldots, Y_{k}$. Esto se mantiene desde que la función de distribución acumulada conjunta de $Y_{1}, \ldots, Y_{k}$ satisface lo siguiente:
+$$
+F_{Y_{1}, \ldots, Y_{k}}\left(y_{1}, \ldots, y_{k}\right)=P\left[Y_{1} \leq y_{1} ; \ldots ; Y_{k} \leq y_{k}\right]
+$$
+$$=P\left[g_{1}\left(X_{1}, \ldots, X_{n}\right) \leq y_{1} ; \ldots ; g_{k}\left(X_{1}, \ldots, X_{n}\right) \leq y_{k}\right]$$
+\\
+Para $y_{1}, \ldots, y_{k}$ fijos, que es la probabilidad de un evento descrito en términos de $X_{1}, \ldots, X_{n},$ y teóricamente tal probabilidad se puede determinar mediante integración o sumando la densidad conjunta sobre la región correspondiente al evento. El problema es que, en general, no se puede evaluar fácilmente la probabilidad deseada para cada $y_{1}, \ldots, y_{k} .$ Uno de los problemas importantes de la inferencia estadística, la estimación de parámetros, nos proporciona un ejemplo de un problema en el que es útil poder encontrar la distribución de una función de un conjunto variables aleatorias.\\
+
+En este capítulo se presentan tres técnicas para encontrar la distribución de funciones de variables aleatorias. Estas tres técnicas se denominan (i) la técnica de función de distribución acumulativa, (ii) la técnica de función generadora de momento, y (iii) la técnica de transformación. Se presenta un número importante de ejemplos, incluida la distribución de sumas de variables aleatorias y la distribución del mínimo y máximo. La presentación de otras distribuciones derivadas importantes se aplaza hasta capítulos posteriores. Por ejemplo, las distribuciones de chi-cuadrado, la t de Student y F, todas derivadas del muestreo de una distribución normal.\\
+
+Antes de la presentación de las técnicas para encontrar la distribución de funciones de variables aleatorias que es una discusión de expectativas de funciones de variables aleatorias. Como uno podría sospechar, una expectativa, por ejemplo, la media o la varianza de una función de variables aleatorias dadas puede a veces expresarse en términos de expectativas de las variables aleatorias dadas. Si tal es el caso y uno solo está interesado en ciertas expectativas, entonces no es necesario resolver el problema de encontrar la distribución de la función de las variables aleatorias dadas. Una función importante de las variables aleatorias dadas es su suma, y la media y la varianza de una suma de valores aleatorios dados se derivan de las variables.\\
+
+Hemos comentado varias veces anteriormente que nuestro objetivo intermedio fue la comprensión de la teoría de la distribución. Este capítulo nos proporciona con una presentación de la teoría de la distribución a un nivel que se considera adecuado para la comprensión de los conceptos estadísticos que se dan en el resto de este libro.
+
+\section{EXPECTATIVAS DE FUNCIONES DE VARIABLES ALEATORIAS}
+Hay 2 puntos de vista.
+\subsection{Expectativa de dos formas}
+
+Una expectativa de una función de un conjunto de variables aleatorias se puede obtener por dos diferentes caminos. Para ilustrar, considere una función de una sola variable aleatoria, digamos $X .$ Sea $g(\cdot)$ la función, y establezca $Y=g(X)$. Dado que Y es una variable aleatoria, se define $E[Y]$ (si existe), y $E[g(X)]$ se define (si existe). Por ejemplo, si $X$ e $Y=g(X)$  son variables aleatorias continuas, entonces, por definición
+$$
+E[Y]=\int_{-\infty}^{\infty} y f_{Y}(y) d y
+$$
+y
+$$
+E[g(X)]=\int_{-\infty}^{\infty} g(x) f_{X}(x) d x
+$$
+pero $Y=g(X),$ por lo que parece razonable que $E[Y]=E[g(X)] .$ Esto puede, de hecho, ser probado; aunque no nos molestaremos en hacerlo. Por tanto, tenemos dos formas de calcular la expectativa de $Y=g(X)$; uno es promediar Y con respecto a la densidad de Y, y la otra es promediar $g(X)$ con respecto a la densidad de X. En general, para variables aleatorias dadas $X_{1}, \ldots, X_{n},$ sea $Y=g\left(X_{1}, \ldots, X_{n}\right) ;$ entonces $E[Y]=E\left[g\left(X_{1}, \ldots, X_{n}\right)\right],$ donde (para variables aleatorias continuas conjuntas)
+
+\begin{equation}\label{eq:e1}
+E[Y]=\int_{-\infty}^{\infty} y f_{Y}(y) d y
+\end{equation}
+
+y
+
+\begin{equation}\label{eq:e2}
+E\left[g\left(X_{1}, \ldots, X_{n}\right)\right]=\int_{-\infty}^{\infty} \ldots \int_{-\infty}^{\infty} g\left(x_{1}, \ldots, x_{n}\right) f_{X_{1} \ldots \ldots x_{n}}\left(x_{1}, \ldots, x_{n}\right) d x_{1} \ldots d x_{n}
+\end{equation}
+
+En la práctica, uno seleccionaría naturalmente el método que hace los cálculos más fáciles. Uno podría sospechar que la Ec. ~\ref{eq:e1} da el mejor método de los dos ya que involucra solo una integral, mientras que la Ec. ~\ref{eq:e2} implica una integral múltiple. Por otro lado, la Ec. ~\ref{eq:e1} involucra la densidad de Y, una densidad que se debe obtener antes de que la integración pueda continuar.\\
+
+EJEMPLO 1 Sea X una variable aleatoria normal estándar y sea $g(x)=x^{2} .$ Para $Y=g(X)=X^{2}$
+$$
+E[Y]=\int_{-\infty}^{\infty} y f_{Y}(y) d y
+$$
+y
+$$
+E[g(X)]=\varepsilon\left[X^{2}\right]=\int_{-\infty}^{\infty} x^{2} f_{X}(x) d x
+$$
+Ahora
+$$
+E\left[X^{2}\right]=\int_{-\infty}^{\infty} x^{2} \frac{1}{\sqrt{2 \pi}} e^{-4 x^{2}} d x=1
+$$
+
+y
+$$
+E[Y]=\int_{0}^{\infty} y \frac{1}{\Gamma(1 / 2)}(1 / 2)^{t} y^{-\frac{1}{2}} e^{-t y} d y=1
+$$
+utilizando el hecho de que Y tiene una distribución gamma con parámetros $r=\frac{1}{2}$ y $\lambda=\frac{1}{2} .$
+
+\subsection{Sumas de variables aleatorias}
+Una función simple, pero importante, de varias variables aleatorias es su suma.\\
+Teorema 1 Para variables aleatorias $X_{1}, \ldots, X_{n}$
+$$
+E\left[\sum_{\mathrm{I}}^{n} X_{i}\right]=\sum_{1}^{n} E\left[X_{i}\right]
+$$
+y
+$$
+\operatorname{var}\left[\sum_{1}^{n} X_{i}\right]=\sum_{1}^{n} \operatorname{var}\left[X_{i}\right]+2 \sum_{i<j} \sum \operatorname{cov}\left[X_{i}, X_{j}\right]
+$$
+DEMUESTRE que $E\left[\sum_{1}^{n} X_{i}\right]=\sum_{1}^{n} E\left[X_{i}\right]$ se sigue de una propiedad de expectativa.
+
+\begin{center}
+$
+\operatorname{var}\left[\sum_{1}^{n} X_{i}\right] =E\left[\left(\sum_{1}^{n} X_{l}-E\left[\sum_{1}^{n} X_{i}\right]\right)^{2}\right]=E\left[\left(\sum_{1}^{n}\left(X_{i}-E\left[X_{i}\right]\right)\right)^{2}\right]
+=E\left[\sum_{i=1}^{n} \sum_{j=1}^{n}\left(X_{l}-E\left[X_{i}\right]\right)\left(X_{j}-E\left[X_{j}\right]\right)\right]
+=\sum_{i=1}^{n} \sum_{j=1}^{n} \delta\left[\left(X_{i}-E\left[X_{i}\right]\right)\left(X_{j}-\delta\left[X_{j}\right]\right)\right]
+=\sum_{i=1}^{n} \operatorname{var}\left[X_{i}\right]+2 \sum_{i<j} \sum_{j} \operatorname{cov}\left[X_{i}, X_{j}\right]
+$
+\end{center}
+
+Corolario Si $X_{1}, \ldots, X_{n}$ son variables aleatorias no correlacionadas, entonces
+$$
+\operatorname{var}\left[\sum_{1}^{n} X_{i}\right]=\sum_{i}^{n} \operatorname{var}\left[X_{i}\right]
+$$
+El siguiente teorema da un resultado que está algo relacionado con el anterior teorema en la medida en que su demostración, que se deja como ejercicio, es similar.
+
+Teorema 2 Sean $X_{1}, \ldots, X_{n}$ y $Y_{1}, \ldots, Y_{m}$ dos conjuntos de variables aleatorias, y sean $a_{1}, \ldots, a_{n}$ y $b_{1}, \ldots, b_{m}$ dos conjuntos de constantes; luego
+
+\begin{equation}\label{eq:e5}
+\operatorname{cov}\left[\sum_{1}^{n} a_{i} X_{i}, \sum_{1}^{m} b_{j} Y_{j}\right]=\sum_{i=1}^{n} \sum_{j=1}^{m} a_{i} b_{j} \operatorname{cov}\left[X_{i}, Y_{j}\right]
+\end{equation}
+
+Corolario Si $X_{1}, \ldots, X_{n}$ son variables aleatorias $a_{1}, \ldots, a_{n}$ son constantes, entonces
+
+$$\operatorname{var}\left[\sum_{1}^{n} a_{i} X_{i}\right]= \sum_{i=1}^{n} \sum_{j=1}^{n} a_{i} a_{j} \operatorname{cov}\left[X_{i}, X_{j}\right]$$
+
+\begin{equation}\label{eq:e3}
+=\sum_{i=1}^{n} a_{i}^{2} \operatorname{var}\left[X_{i}\right]+\sum_{i \neq j} a_{i} a_{j} \operatorname{cov}\left[X_{i}, X_{j}\right]
+\end{equation}
+
+En particular, si $X_{1}, \ldots, X_{n}$ son independientes e idénticamente distribuidos aleatoriamente con media $\mu_{x}$ y varianza $\sigma_{x}^{2}$ y si $\bar{X}_{n}=(1 / n) \sum_{1}^{n} X_{1}$. Luego
+
+\begin{equation}\label{eq:e4}
+E\left[\bar{X}_{n}\right]=\mu_{X}, \quad \text { y } \quad \operatorname{var}\left[\bar{X}_{n}\right]=\frac{\sigma_{X}^{2}}{n}
+\end{equation}
+
+DEMOSTRACIÓN Sea $m=n, Y_{i}=X_{i},$ y $b_{i}=a_{i}, i=1, \ldots, n$ en el teorema anterior; luego
+$$
+\operatorname{var}\left[\sum_{1}^{n} a_{i} X_{i}\right]=\operatorname{cov}\left[\sum_{1}^{n} a_{i} X_{i}, \sum_{1}^{m} b_{j} Y_{j}\right]
+$$
+y Ec. ~\ref{eq:e3} se sigue de la Ec. ~\ref{eq:e5}. Para obtener la parte de la varianza de la ecuación ~\ref{eq:e4} de Ec. ~\ref{eq:e3}, establezca $a_{i}=1 / n$ y $\sigma_{X}^{2}=\operatorname{var}\left[X_{i}\right] .$ La parte media de la ecuación ~\ref{eq:e4} es rutinariamente derivada como
+$$
+E\left[X_{n}\right]=\frac{1}{n} E\left[\sum_{1}^{n} X_{i}\right]=\frac{1}{n} \sum_{1}^{n} E\left[X_{i}\right]=\frac{1}{n} \sum_{i}^{n} \mu_{X}=\mu_{X}
+$$
+Corolario Si $X_{1}$ y $X_{2}$ son dos variables aleatorias, entonces
+$$
+\operatorname{var}\left[X_{1} \pm X_{2}\right]=\operatorname{var}\left[X_{1}\right]+\operatorname{var}\left[X_{2}\right] \pm 2 \operatorname{cov}\left[X_{1}, X_{2}\right]
+$$
+La ecuación (10) da la varianza de la suma o la diferencia de dos variables. Claramente
+$$
+E\left[X_{1} \pm X_{2}\right]=E\left[X_{1}\right] \pm E\left[X_{2}\right]
+$$
+
+EJEMPLO 4 Suponga que X e Y son independientes e idénticamente distribuidas con densidad $f_{x}(x)=f_{Y}(x)=I_{(0,1)}(x) .$ Tenga en cuenta que dado  X como Y asumen valores entre 0 y 1, Z = X + Y asume valores entre 0 y 2.
+\begin{center}
+$$
+f_{Z}(z) =\int_{-\infty}^{\infty} f_{Y}(z-x) f_{x}(x) d x
+=\int_{-\infty}^{\infty} I_{(0,1)}(z-x) I_{(0,1)}(x) d x
+$$
+$$
+=\int_{-\infty}^{\infty}\left\{I_{(0, z)}(x) I_{(0,1)}(z)+I_{(z-1,1)}(x) I_{[1,2)}(z)\right\} d x
+=I_{(0,1)}(z) \int_{0}^{x} d x+I_{(1,2)}(z) \int_{x-1}^{1} d x
+$$
+$$
+=z I_{(0,1)}(z)+(2-z) I_{[1,2)}(z)
+$$
+
+\includegraphics[scale=1]{chapters/chapter7/figures/ejemplo4.JPG}
+
+\end{center}
+\section{TÉCNICA DE FUNCIÓN GENERADORA DE MOMENTOS}
+A continuación se presenta la técnica y su uso.
+\subsection{Descripción de la técnica}
+
+Hay otro método para determinar la distribución de funciones de azar, variables que encontraremos particularmente útiles en ciertos casos. El método se basa en el concepto de función generadora de momentos y llamarse técnica de función generadora de momentos.\\
+El planteamiento del problema sigue siendo el mismo. Para una variable aleatoria dada es $X_{1}, \ldots, X_{n}$ con densidad dada $f_{X_{1}}, \ldots, x_{n}\left(x_{1}, \ldots, x_{n}\right)$  y funciones dadas $g_{1}(+, \ldots, \cdot), \ldots, g_{k}(+, \ldots, \cdot),$ encuentre la distribución conjunta de $Y_{1}=g_{1}\left(X_{1}, \ldots, X_{n}\right)$
+$\ldots, Y_{k}=g_{k}\left(X_{1}, \ldots, X_{n}\right) .$ Ahora la función generadora articular de momento de $Y_{1}, \ldots, Y_{k},$ si existe, es
+
+\begin{center}
+$$m_{Y_{1}, \ldots, Y_{k}}\left(t_{1}, \ldots, t_{k}\right)=E\left[e^{t_{1} Y_{1}+\cdots+t_{k} Y_{k}}\right] $$
+$$=\int \cdots \int e^{t_{1} g_{1}\left(x_{1}, \ldots, x_{n}\right)+\cdots+t_{k} g_{k}\left(x_{1}, \ldots, x_{n}\right)}
+\times f_{X_{1}, \ldots, X_{n}}\left(x_{1}, \ldots, x_{n}\right) \prod_{i=1}^{n} d x_{i}.$$
+\end{center}
+Si después de la integración, la función resultante de $t_{1}, \ldots, t_{k}$ puede reconocerse como la función generadora de momentos articulares de alguna distribución conjunta conocida, se deducirá que $Y_{1}, \ldots, Y_{k}$ tiene esa distribución conjunta en virtud del hecho de que una función generadora de momento, cuando existe, es única y determina de forma única su función de distribución.\\
+
+Para k $>$ 1, este método nos será de utilidad limitada porque podemos reconocer sólo unas pocas funciones generadoras conjuntas de momentos. Para k = 1, el momento que genera la función es una función de un solo argumento, y deberíamos tener una mejor oportunidad de reconocer la función generadora de momentos resultante.\\
+
+Este método es bastante poderoso en conexión con ciertas técnicas de matemáticas avanzadas (la teoría de las transformaciones) que, en muchos casos, permiten uno para determinar la distribución asociada con la generación de momentos derivados.\\
+
+La aplicación más útil de la técnica de la función generadora de momentos se dará para encontrar la distribución de sumas de variables aleatorias independientes.\\
+
+EJEMPLO 6 Suponga que X tiene una distribución normal con media 0 y varianza 1. Sea  $Y=X^{2},$  y encuentre la distribución de Y.
+\begin{center}
+$$
+m_{Y}(t) =E\left[e^{t r}\right]=\int_{-\infty}^{\infty} e^{t x^{2}} \frac{1}{\sqrt{2 \pi}} e^{-\frac{1}{2} x^{2}} d x
+$$
+
+$$
+={\frac{a}{\sqrt{2 \pi}} } \int_{-\infty}^{\infty} e^{-\frac{1}{2} x^{2}(1-2 t)} d x
+$$
+
+$$
+={\frac{1}{\sqrt{2 \pi}}} \cdot \frac{(1-2 t)^{-\frac{1}{2}}}{(1-2 t)^{-\pm}} \int_{-\infty}^{\infty} e^{-\frac{1}{2} x^{2}(1-2 t)} d x
+=(1-2 t)^{-4}=\left(\frac{\frac{1}{2}}{\frac{1}{2}-t}\right)^{t} \quad \text { para } t<\frac{1}{2}
+$$
+
+\end{center}
+que reconocemos como la función generadora de momento de una gamma con parámetros $r=\frac{1}{2}$ y $\lambda=\frac{1}{2} .$ (También se llama distribución chi-cuadrado con un grado de libertad.
+\subsection{Distribución de sumas de variables aleatorias independientes}
+
+En esta subsección empleamos la técnica de función generadora de momento para encontrarla distribución de la suma de variables aleatorias independientes.\\
+
+Teorema 9 Si $X_{1}, \ldots, X_{n}$ son variables aleatorias independientes y la función generadora de momentos de cada uno existe para todo $-h<t<h$ para algunos $h>0$, supongamos Y $=\sum_{1}^{n} X_{i}$ entonces $m_{Y}(t)= E\left[\exp \sum X_{i} t\right]=\prod_{i=1}^{n} m_{X_{i}}(t) \quad \text { para } \quad-h<t<h .$\\
+
+DEMOSTRACIÓN
+$$
+\begin{aligned}
+m_{Y}(t) &=E\left[\exp \sum X_{i} t\right]=E\left[\prod_{i=1}^{n} e^{x_{i} t}\right] \\
+&=\prod_{i=1}^{n} E\left[e^{x_{i}}\right]=\prod_{i=1}^{n} m_{X_{i}}(t)
+\end{aligned}
+$$
+utilizando el teorema 9.\\
+
+El poder y la utilidad del teorema 9 se hacen evidentes si recordamos el teorema 7 del Cap. II, que dice que una función generadora de momento, cuando existe, determina la función de distribución. Por lo tanto, si podemos reconocer $\prod_{i=1}^{n} m_{X_{i}}(t)$ como la función generadora de momentos correspondiente a una distribución particular, entonces hemos encontrado la distribución de $\sum_{1}^{n} X_{i} .$ En los siguientes ejemplos, podrá hacer precisamente eso.\\
+
+EJEMPLO 9 Suponga que $X_{1}, \ldots, X_{n}$ son variables aleatorias de Bernoulli; es decir, $P\left[X_{i}=1\right]=p,$ y $P\left[X_{l}=0\right]=1-p .$ Ahora
+$$
+m_{X_{1}}(t)=p e^{t}+q
+$$
+Entonces
+$$
+m_{\Sigma X_{i}}(t)=\prod_{i=1}^{n} m_{X_{i}}(t)=\left(p e^{t}+q\right)^{n}
+$$
+la función generadora de momentos de una variable aleatoria binomial; por lo tanto $\sum_{1}^{n} X_{i}$ tiene una distribución binomial con parámetros n y p.\\
+
+EJEMPLO 11 Suponga que $X_{1}, \ldots, X_{n}$ son variables aleatorias exponenciales independientes e idénticamente distribuidas; luego
+$$
+m_{X_{i}}(t)=\frac{\lambda}{\lambda-t}
+$$
+Entonces
+$$
+m_{\Sigma x_{i}}(t)=\prod_{i=1}^{n} m_{X_{i}}(t)=\left(\frac{\lambda}{\lambda-t}\right)^{n}
+$$
+que es la función generadora de momentos de una distribución gamma con parámetros n y $\lambda ;$ por eso,
+$$
+f_{\Sigma X_{i}}(x)=\frac{\lambda^{n}}{\Gamma(n)} x^{n-1} e^{-\lambda x} I_{(0, \infty)}(x)
+$$
+la densidad de una distribución gamma con parámetros n y $\lambda$.
+
+\section{LA TRANSFORMACIÓN $Y=g(X)$}
+
+La última de nuestras tres técnicas para encontrar la distribución de funciones de variables aleatorias es la técnica de transformación. Se discute en esta sección para el caso especial de encontrar la distribución de una función de una variable aleatoria. Es decir, para una variable aleatoria dada X buscamos la distribución de $Y=g(X)$ para alguna función $g(\cdot) .$. Tanto la notación $Y=g(X)$ como la notación $y=g(x)$ aparecerá en los párrafos siguientes; $y=g(x)$ es la notación habitual para la función o transformación especificada por $g(\cdot),$ y $Y=g(X)$ define la variable aleatoria Y como la función $g(\cdot)$ de la variable aleatoria X.
+
+\subsection{Distribución de $Y=g(X)$}
+
+Una variable aleatoria X puede ser transformada por alguna función $g(\cdot)$ para definir una nueva variable aleatoria Y. La densidad de $Y, f_{Y}(y),$ será determinada por la transformación $g(\cdot)$ junto con la densidad $f_{X}(x)$ de $X$.\\
+
+Primero, si X es una variable aleatoria discreta con puntos de masa $x_{1}, x_{2}, \ldots,$ entonces la distribución de $Y=g(X)$ está determinada directamente por las leyes de probabilidad. Si X toma los valores $x_{1}, x_{2}, \ldots$ con probabilidades $f_{x}\left(x_{1}\right), f_{X}\left(x_{2}\right), \ldots,$ entonces los posibles valores de Y se determinan sustituyendo los valores sucesivos de $X$ en $g(\cdot) .$  Puede ser que varios valores de X den lugar al mismo valor de Y. La probabilidad de que Y tome un valor dado, digamos $y_{j},$ es
+$$
+f_{Y}\left(y_{j}\right)=\sum_{\left(i: g\left(x_{i}\right)=y j\right.} f_{X}\left(x_{i}\right)
+$$
+EJEMPLO 15 Suponga que X toma los valores 0, 1, 2, 3, 4, 5 con probabilidades $f_{X}(0), f_{X}(1), f_{X}(2), f_{X}(3), f_{X}(4),$ y $f_{X}(5) . \quad$ Si $Y=g(X)=(X-2)^{2}$
+ note que Y puede tomar valores $0, 1, 4, $ y $9 ;$ entonces $f_{Y}(0)=f_{X}(2),$ $f_{Y}(I)=f_{X}(1)+f_{X}(3), f_{Y}(4)=f_{X}(0)+f_{X}(4),$ y $f_{Y}(9)=f_{X}(5)$
+Segundo, si X es unvariable aleatoria, entonces la función de distribución acumulativa de $Y=g(X)$  puede ser encontrada integrando $f_{x}(x)$  sobre la región apropiada; es decir,
+$$
+F_{Y}(y)=P[Y \leq y]=P[g(X) \leq y]=\int_{(x: g(x) \leq y)} f_{X}(x) d x
+$$
+Esta es solo la técnica de la función de distribución acumulativa.
+
+EJEMPLO 16 Sea X una variable aleatoria con distribución uniforme sobre el intervalo (0,1) y sea $Y=g(X)=X^{2} .$ Se desea encontrar la densidad de Y. Ahora
+$$
+F_{Y}(y)=P[Y \leq y]=P\left[X^{2} \leq y\right]=\int_{\left\{x: x^{2} \leq y\right\}} f_{X}(x) d x=\int_{0}^{\sqrt{y}} d x=\sqrt{y}
+$$
+para $0<y<1 ;$ entonces
+$$
+F_{Y}(y)=\sqrt{y} I_{(0,1)}(y)+I_{[1, \infty)}(y)
+$$
+y por lo tanto
+$$
+f_{Y}(y)=\frac{1}{2} \frac{1}{\sqrt{y}} I_{(0,1)}(y)
+$$
+Aplicación de la técnica de función de distribución acumulativa para encontrar la densidad de $Y=g(X),$ como en el ejemplo anterior, produce la técnica de transformación,cuyo resultado se da en el siguiente teorema.\\
+
+Teorema 11 Suponga que X es una variable aleatoria continua con función de probabilidad de densidad $f_{x}(\cdot) .$ Establezca $X=\left\{x: f_{X}(x)>0\right\} .$ Suponga que:
+(i) $y=g(x)$ define una transformación uno a uno de X en Y. (ii) La derivada de $x=g^{-1}(y)$ con respecto a y es continuo y distinto de cero para $y Y,$ donde $g^{-1}(y)$ es la función inversa de $g(x) ;$ es decir, $g^{-1}(y)$ es que $x$ para cada $g(x)=y$
+Entonces $Y=g(X)$ es una variable aleatoria continua con densidad
+$$
+f_{Y}(y)=\left|\frac{d}{d y} g^{-1}(y)\right| f_{X}\left(g^{-1}(y)\right) I_{\Phi}(y)
+$$
+DEMOSTRACIÓN Lo anterior es un teorema estándar del cálculo sobre el cambio de variable en una integral definida; por lo que solo esbozaremos la prueba. Considere el caso cuando X es un intervalo. Supongamos que $g(x)$ es una función creciente monótona sobre X; es decir, $g^{\prime}(x)>0,$  lo cual es cierto si y solo si $(d / d y) g^{-1}(y)>0$ sobre $Y .$ Para $y \in Y, \quad F_{Y}(y)=P[g(X) \leq y]=P[X \leq$
+$\left.g^{-1}(y)\right]=F_{X}\left(g^{-1}(y)\right),$ por tanto $f_{Y}(y)=(d / d y) F_{Y}(y)=\left[(d / d y) g^{-1}(y)\right]$
+$f_{X}\left(g^{-1}(y)\right)$ por la regla de la cadena de derivación. Por otro lado, si $g(x)$ es una función monótonamente decreciente sobre $X$, para que $g^{\prime}(x)<0$ y
+$
+(d / d y) g^{-1}(y)<0, \text { entonces } F_{Y}(y)=P[g(X) \leq y]=P\left[X \geq g^{-1}(y)\right]=1-F_{X}
+\left(g^{-1}(y)\right), \text { por lo cual } f_{Y}(y)=-\left[(d / d y) g^{-1}(y)\right] f_{X}\left(g^{-1}(y)\right)=\left|(d / d y) g^{-1}(y)\right| \\
+f_{X}\left(g^{-1}(y)\right) \text { para } y \in Y .
+$\\
+
+EJEMPLO 17 Suponga que X tiene una distribución beta. ¿Cuál es la distribución de $ Y=-\log _{e} X ? \quad X=\left\{x: f_{X}(x)>0\right\}=\{x: 0<x<1\} . \quad y=g(x)=-\log _{e} x
+$
+que define una transformación uno a uno de X en $D=\{y: y>0\}, \quad x=$ $g^{-1}(y)=e^{-y},$ entonces $(d / d y) g^{-1}(y)=-e^{-y}$, que es continua y distinta de cero para $y \in D$.  Por el Teorema 11,
+\begin{center}
+$$f_{Y}(y) =\left|\frac{d}{d y} g^{-1}(y)\right| f_{X}\left(g^{-1}(y)\right) I_{D}(y)$$
+$$=e^{-y} \frac{1}{\mathrm{~B}(a, b)}\left(e^{-y}\right)^{a-1}\left(\mathrm{I}-e^{-y}\right)^{b-1} I_{(0, \infty)}(y)
+$$
+
+$$
+\frac{1}{\mathrm{~B}(a, b)} e^{-a y}\left(1-e^{-y}\right)^{b-1} I_{(0, \infty)}(y)
+$$
+\end{center}
+En particular, si b = 1, entonces $\mathrm{B}(a, b)=1 / a ;$ entonces $f_{Y}(y)=a e^{-a y} I_{(0, \infty)}(y),$ una distribución exponencial con parámetro a.\\
+
+EJEMPLO 18 Suponga que X tiene la densidad de Pareto $f_{X}(x)=\theta x^{-\theta-1} I_{[1, \infty)}(x)$ y se desea la distribución de $Y=\log _{e} X$.
+\begin{center}
+$$
+f_{Y}(y) =\left|\frac{d}{d y} g^{-1}(y)\right| f_{X}\left(y^{-1}(y)\right) I_{\eta}(y)
+=e^{y} \theta\left(e^{y}\right)^{-\theta-1} I_{[1, \infty)}\left(e^{y}\right)=\theta e^{-\theta y} I_{[0, \infty)}(y)
+$$
+\end{center}
+La condición de que $g(x)$  sea una transformación uno a uno de X en 2) no es necesariamente restrictiva. Para la transformación $y=g(x)$, cada punto en X será correspondido a un solo punto en 2; pero a un punto en p puede corresponder a más de un punto en X, lo que dice que la transformación no es uno a uno, y en consecuencia, el Teorema 11 no es directamente aplicable. Sin embargo, si se puede definir X compuesto en un número finito (o incluso contable) de conjuntos disjuntos, digamos $X_{1}, \ldots,$ $X_{m},$  de modo que $y=g(x)$  define una transformación uno a uno de cada $X_{i}$ en $Y$ entonces se puede encontrar la densidad conjunta de $Y=g(X)$. Sea $x=g_{i}^{-1}(y)$ denota la inversa de $y=g(x)$ para $x in X_{i} .$ Entonces la densidad de $Y=g(X)$ viene dada por
+
+\begin{equation}\label{eq:e6}
+f_{Y}(y)=\sum\left|\frac{d}{d y} g_{i}^{-1}(y)\right| f_{X}\left(g_{i}^{-1}(y)\right) I_{\eta}(y)
+\end{equation}
+
+donde la suma es sobre los valores de i para los cuales  $g(x)=y$ para algún valor de x en  $X_{i}$.\\
+
+EJEMPLO 19 Sea X una variable aleatoria continua con densidad $f_{X}(\cdot),$ y sea $Y=g(X)=X^{2} .$  Tenga en cuenta que si X es un intervalo que contiene tanto puntos negativos y positivos, entonces, $y=g(x)=x^{2}$  no es uno a uno. Sin embargo, si X es descompuesto en $X_{1}=\{x: x \in X, x<0\}$ y $X_{2}=\{x: x \in X,$
+$x \geq 0\},$ entonces $y=g(x)$ define una transformación uno a uno en cada $x_{i}$ Tenga en cuenta que $g_{1}^{-1}(y)=-\sqrt{y}$ y $g_{2}^{-1}(y)=\sqrt{y} .$ Por Ec. ~\ref{eq:e6},\\
+$$
+f_{Y}(y)=\left[\frac{1}{2} \frac{1}{\sqrt{y}} f_{X}(-\sqrt{y})+\frac{1}{2} \frac{1}{\sqrt{y}} f_{X}(\sqrt{y})\right] I_{(0, \infty)}(y)
+$$
+En particular, si
+$$
+f_{X}(x)=\left(\frac{1}{2}\right) e^{-|x|}
+$$
+luego
+$$
+f_{Y}(y)=\frac{1}{2} \frac{1}{\sqrt{y}} e^{-\sqrt{y}} I_{(0, \infty)}(y)
+$$
+o si
+$$
+f_{X}(x)=\frac{2}{9}(x+1) I_{(-1,2)}(x)
+$$
+luego
+$$
+\begin{aligned}
+f_{Y}(y)=\left[\frac{1}{2} \frac{1}{\sqrt{y}} \frac{2}{9}(-\sqrt{y}+1)+\frac{1}{2} \frac{1}{\sqrt{y}} \frac{2}{9}(1+\sqrt{y})\right] I_{(0,1)}(y) \\
++\left[\frac{1}{2} \frac{1}{\sqrt{y}} \frac{2}{9}(1+\sqrt{y})\right] I_{[1,4)}(y)
+\end{aligned}
+$$
+\subsection{Transformada integral de probabilidad}
+Si X es una variable aleatoria con distribución acumulativa $F_{X}(\cdot),$ entonces $F_{x}(\cdot)$ es un candidato para $g(\cdot)$ en la transformación $Y=g(X) .$ El siguiente teorema da la distribución de $Y=F_{X}(X)$ si $F_{X}(\cdot)$ es continua. Dado que $F_{X}(\cdot)$ es una función de plegado, la función inversa $F_{X}^{-1}(\cdot)$ puede definirse para cualquier valor de y entre 0 y 1 como: $F_{X}^{-1}(y)$ es la x más pequeña que satisface $F_{x}(x) \geq y$\\
+
+Teorema 12 Si X es una variable aleatoria con función de distribución acumulativa continua $F_{X}(x)$, entonces $U=F_{X}(X)$  se distribuye uniformemente en el intervalo (0, 1). Por el contrario, si U se distribuye uniformemente en el intervalo (0, 1), entonces $X=F_{X}^{-1}(U)$ tiene función de distribución acumulativa $F_{X}(\cdot)$\\
+
+DEMOSTRACIÓN
+
+$$P[U \leq u]=P\left[F_{X}(X) \leq u\right]=P\left[X \leq F_{X}^{-1}(u)\right]=\\
+F_{X}\left(F_{X}^{-1}(u)\right)
+\text { para } 0<u<1 .$$
+En cambio, $$ P[X \leq x]=P\left[F_{X}^{-1}(U) \leq x\right]=P\left[U \leq F_{X}(x)\right]\\
+=F_{X}(x)$$
+
+En diversas aplicaciones estadísticas, particularmente en estudios de simulación, a menudo es deseado generar valores de alguna variable aleatoria X. Para generar un valor de una variable aleatoria X que tiene una función de distribución acumulativa continua $F_{X}(\cdot),$ basta con generar un valor de una variable aleatoria U que se distribuye uniformemente en el intervalo (0,1). Esto se sigue del teorema 12, ya que si U es una variable aleatoria con una distribución uniforme en el intervalo (0, 1), entonces $X=$ $F_{X}^{-1}(U)$ es una variable aleatoria que tiene una distribución $F_{X}(\cdot) .$  Entonces, para obtener un valor, suponga x, de una variable aleatoria X, obtenga un valor, digamos u, de una variable aleatoria U, compute $F_{X}^{-1}(u),$ y ajústelo a x. Un valor u de una variable aleatoria U se llama número aleatorio. Se dispone de muchos generadores de números aleatorios orientados a la computación\\
+
+EJEMPLO 20 $\quad F_{X}(x)=\left(1-e^{-\lambda x}\right) I_{(0, \infty)}(x) . \quad F_{X}^{-1}(y)=-(1 / \lambda) \log _{e}(1-y) ;$ entonces $-(1 / \lambda) \log _{e}(1-U)$ es una variable aleatoria que tiene distribución $\left(1-e^{-\lambda x}\right)$ $I_{(0, \infty)}(x)$  si U es una variable aleatoria distribuida uniformemente en el intervalo (0,1).\\\\
+La transformación $Y=F_{x}(X)$ se llama transformación integral de probabilidad. Desempeña un papel importante en la teoría de las estadísticas libre de distribución y pruebas de bondad de ajuste.
