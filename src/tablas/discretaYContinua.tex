@@ -1,0 +1,353 @@
+\renewcommand{\theequation}{\arabic{chapter}-\arabic{equation}}
+%Esteban Jaramillo Sarmiento
+\newpage
+
+
+
+\strutlongstacks{T}
+\begin{table}[ht!]
+     \centering
+     \caption{DISTRIBUCIONES DISCRETAS \\ } 
+     \hspace*{-4.9cm}\begin{tabular}{|p{1.5cm}|p{5.12cm}|p{2.13cm}|p{1cm}|p{2.13cm}|p{4.8cm}|p{2cm}|}
+        Nombre de las familias de distribuciones paramétricas & 
+        Funciones de densidad discreta $f(\cdot)$ & Espacio de Parámetros & 
+        Sig-nificado  $\mu=\epsilon[X]$& 
+        Varianza $\sigma^2=\epsilon[(X-\mu)^2]$ & 
+        Momentos $\mu_r^{'}=\epsilon[(X^r)]$ o $\mu_r^{'}=[(X-\mu)^r]$ y/o $k_r$ acumulativos & 
+        Función generadora de momento $\epsilon[e^{tX}]$\\ 
+        \hline
+        Uniforme discreta &
+        $f(x)=\frac{1}{N}*I_{1...N}(x)$ &
+        $N = 1,2,... $ &
+        $\frac{N+1}{2}$ &
+        $\frac{N^2+1}{12}$ & 
+        \Longunderstack{
+        $\mu_3^{'} = \frac{N(N+1)^2}{4}$  \\ \\
+        $\mu_4^{'} = \frac{(N+1)(2N+1)(3N^2+3N-1)}{30}$ \\} 
+        &
+        $\sum_{j=1}^{N}\frac{1}{N}e^{jt}$ \\ 
+        \hline
+        
+        Bernoulli &
+        $f(x)=p^xq^{1-x}I_{(0,1)}(x)$ &
+        \Longunderstack{
+        $0 \leq p \leq 1 $  \\ \\
+        $q = 1-p$ \\} 
+        &
+        $p$ &
+        $pq$ &
+        $\mu_r^{'} =$ p para toda r &
+        $q+pe^t$ 
+        \\ \hline
+        
+        Binomial &
+        $f(x)=(_{x}^{n})p^xq^{n-x}I{(0,1,...,n)}(x) $ &
+        \Longunderstack{
+        $0 \leq p \leq 1 $  \\ \\
+        $n = 1,2,3...$ \\ \\
+        $q = 1-p$
+        \\} 
+        &
+        $np$ &
+        $npq$ &
+        \Longunderstack{
+        $\mu_3 = npq(q-p)$  \\ \\
+        $\mu_4 = 3n^2p^2q^2+npq(1-6pq)$ \\} &
+        $(q+pe^t)^n$ 
+        \\ \hline
+        
+        Hiper-geométrica &
+        $f(x) = \frac{(_{x}^{K})(_{n-x}^{M-K})}{(_{n}^{M})}I{(0,1,...,n)}(x)$ &
+        \Longunderstack{
+        $M = 1,2$  \\ \\
+        $K = 0,1,...,M$ \\ \\
+        $n = 1,2,...,M$
+        \\} &
+        $n\frac{K}{M}$ &
+        $n\frac{K}{M}\frac{M-K}{M}\frac{M-n}{M-1}$ &
+        $\epsilon[X(X-1)...(X-r+1)]=r!\frac{(_{r}^{K})(_{r}^{n})}{(_{r}^{M})}$ &
+        No es útil
+        \\ \hline
+        
+        Poisson &
+        $f(x) = \frac{e^{-\lambda}\lambda^x}{x!}I{(0,1,...,n)}(x)$ &
+        $\lambda > 0$ &
+        $\lambda$ &
+        $\lambda$ &
+        \Longunderstack{
+        $k_r =  \lambda$ para $r =1,2,...$  \\ \\
+        $\mu_3 =  \lambda$ \\ \\
+        $\mu_4 = \lambda+3\lambda^2$
+        \\}&
+        exp$[\lambda(e^t-1)]$
+        \\ \hline
+        
+        Geométrica &
+        $f(x) = pq^xI{(0,1,...,n)}(x)$ &
+        \Longunderstack{
+        $0 < p \leq 1 $  \\ \\
+        $q = 1-p$ \\} &
+        $\frac{q}{p}$ &
+        $\frac{q}{p^2}$ &
+        \Longunderstack{
+        $\mu_3 = \frac{q+q^2}{p^2}$ \\ \\
+        $\mu_4 = \frac{q+7q^2+q^3}{p^4}$
+        \\}&
+        $\frac{p}{1-qe^t}$
+        \\ \hline
+         
+        Binomial Negativa &
+        $f(x) = _{x}^{r+x-1}p^rp^xI{(0,1,...,n)}(x)$ &
+        \Longunderstack{
+        $0 < p \leq 1 $  \\ \\
+        $r > 0 $  \\ \\
+        $q = 1-p$ \\} &
+        $\frac{rq}{p}$ &
+        $\frac{rq}{p^2}$ &
+        \Longunderstack{
+        $\mu_3 = \frac{r(q+q^2)}{p^3}$ \\ \\
+        $\mu_4 = \frac{r[q+(3r+4)q^2+q^3]}{p^4}$
+        \\}&
+        $(\frac{p}{1-qe^t})^r$
+        
+      \end{tabular}
+\end{table}
+
+
+\strutlongstacks{T}
+\begin{table}[ht!]
+     \centering
+     \caption{DISTRIBUCIONES CONTINUAS \\ } 
+     \hspace*{-4.9cm}\begin{tabular}{|p{1.5cm}|p{5.12cm}|p{2.13cm}|p{1.8cm}|p{2.13cm}|p{4cm}|p{2cm}|}
+        Nombre de las familias de distribuciones paramétricas & 
+        Función de distribución acumulativa $F(\cdot)$ o función de densidad probabilística $f(\cdot)$ & Espacio de Parámetros & 
+        Sig-nificado  $\mu=\epsilon[X]$& 
+        Varianza $\sigma^2=\epsilon[(X-\mu)^2]$ & 
+        Momentos $\mu_r^{'}=\epsilon[(X^r)]$ o $\mu_r^{'}=[(X-\mu)^r]$ y/o $k_r$ acumulativos & 
+        Función generadora de momento $\epsilon[e^{tX}]$\\ 
+        \hline
+         
+        Uniforme o rectangular &
+        $f(x)=\frac{1}{b-a}I_{[a,b]}(x)$  &
+        $-\infty<a<b<\infty$  &
+        $\frac{a+b}{2}$ &
+        $\frac{(b-a)^2}{12}$ &
+        \Longunderstack{
+        $\mu_r = 0$ para r impar \\ \\
+        $\mu_r = \frac{(b-a)^r}{2^r(r+1)}$ para $r$ par
+        \\}& 
+        $\frac{e^{bt}e^{at}}{(b-a)t}$ 
+        \\ 
+        \hline
+        
+        Normal &
+        $f(x) = \frac{1}{\sqrt{2\pi\sigma}}exp[-(x-\mu)^2 /2\sigma]$ &
+        \Longunderstack{
+        $-\infty<\mu<\infty$\\ \\
+        $\sigma>0$
+        \\}& 
+        $\mu$ &
+        $\sigma^2$ &
+        \Longunderstack{
+        $\mu_r = 0$, r impar \\ \\
+        $\mu_r = \frac{r!}{r/2}\frac{\sigma^2}{2^(r/2)}$, $r$ par \\ \\ $k_r = 0$, $r>2$
+        \\} &
+        exp$[\mu t+\frac{1}{2}\sigma^2t^2]$
+        \\ \hline
+        
+        Expo-nencial &
+        $f(x) =\lambda e^{-\lambda x}I_{0,\infty}(x)$ &
+        $\lambda > 0$ &
+        $\frac{1}{\lambda}$ &
+        $\frac{1}{\lambda^2}$ &
+        $\mu_r^{'} = \frac{\Gamma(r+1)}{\lambda^r}$ &
+        $\frac{\lambda}{\lambda - t}$
+        \\ \hline
+        
+        Gamma &
+        $f(x) = \frac{\lambda^r}{\Gamma(r)}x^{r-1}e^{-\lambda x}I_{0,\infty}(x)$ &
+        \Longunderstack{
+        $\lambda > 0$ \\ $r > 0$
+        \\} &
+        $\frac{r}{\lambda}$ &
+        $\frac{r}{\lambda^2}$ &
+        $\mu_j^{'} = \frac{\Gamma(r+j)}{\lambda\Gamma(r)}$ &
+        $(\frac{\lambda}{\lambda - t})^r$
+        \\ \hline
+        
+        Beta &
+        $f(x)=\frac{1}{B(a,b)}x^{a-1}(1-x)^{b-1}I_{(0,1)}(x)$ &
+        \Longunderstack{
+        $a > 0$ \\ $b > 0$
+        \\} &
+        $\frac{a}{a+b}$ &
+        $\frac{ab}{(a+b+1)(a+b)^2}$ &
+        $\mu_r = \frac{B(r+a,b)}{B(a,b)}$ &
+        No es útil
+        \\ \hline
+        
+        Cauchy &
+        $f(x) = \frac{1}{\pi \beta\{1+[(x-a)/\beta]^2\}}$  &
+        \Longunderstack{
+        $-\infty < \lambda < \infty $ \\ $\beta > 0$
+        \\} &
+        No existe &
+        No existe &
+        No existe &
+        \footnotesize
+        La función característica es $e^{\alpha t-\beta t}$
+        \\ \hline
+        
+        Logaritmo normal &
+        \footnotesize
+        $f(x) = \frac{1}{x\sqrt{2\pi\sigma}}exp[-logx-\mu)^2/ 2\sigma^2]I_{(0,\infty)}(x)$ &
+        \Longunderstack{
+        $-\infty < \mu < \infty $ \\ $\sigma > 0$
+        \\} &
+        \small
+        $exp[\mu + \frac{1}{2}\sigma^2]$ &
+        \small
+        $exp[2\mu+2\sigma^2]-exp[2\mu+2\sigma^2]$
+        \normalsize &
+        $\mu_r^{'} = exp[r\mu +\frac{1}{2}r^2\sigma^2]$ &
+        No es útil
+        \\ \hline
+         
+        Doble exponencial &
+        $f(x) = \frac{1}{2\beta}exp(-\frac{\mid x-\alpha\mid }{\beta})$ &
+         \Longunderstack{
+        $-\infty < \alpha < \infty $ \\ $\beta > 0$
+        \\} &
+        $\alpha$ &
+        $2\beta^2$ &
+        \Longunderstack{
+        $\mu_r = 0$, para $r$ impar \\ \\
+        $\mu_r = r!$ para $r$ par \\ \\ } &
+        $\frac{e^{\alpha t}}{1-(\beta t)^2}$
+        \\ \hline
+        
+        Weibull &
+        $f(x) = abx^{b-1}exp[ax^b]I_{(0,\infty)}(x)$ &
+        \Longunderstack{
+        $a>0$ \\ $b>0$ \\
+        } &
+        \tiny
+        $a^{\frac{-1}{b}}\Gamma(1+b^-1)$ &
+        \tiny
+        $a^{\frac{-1}{b}}[\Gamma(1+2b^{-1})-(1+b^{-1})]$ &
+        \normalsize 
+        $\mu_r^{'} = a^{-\frac{r}{b}}\Gamma(1+\frac{r}{b}$&
+        \tiny
+        $\epsilon[X]^t = a^{-t/b}\Gamma(1+\frac{t}{b})$
+        \normalsize 
+        \\ \hline
+        
+        Logística &
+        $F(X) = [1+e^{-(x-\alpha)/\beta}]^{-1}$ &
+        \Longunderstack{
+        $-\infty < \alpha < \infty $ \\ $\beta > 0$
+        \\} &
+        $\alpha$ &
+        $\frac{\beta^2\pi^2}{3}$ &
+        
+        &
+        \small
+        $e^{\alpha t}\pi\beta t csc(\pi\beta t)$
+        \normalsize 
+        \\ \hline
+        
+        Pareto  &
+        $f(x) = \frac{\theta  x_0^\theta}{x^{\theta+1}}I_{(x_0,\infty)}$  &
+        \Longunderstack{
+        $x_0 > 0$ \\ $\theta > 0$
+        \\} &
+        $\frac{\theta x_0}{\theta-1}$ para $\theta > 1$ &
+        $\frac{\theta x_0^2}{(\theta-1)^2(\theta-2)}$ para $\theta > 2$ &
+        $\mu_r^{'} = \frac{\theta x_0^r}{\theta-r}$ para $\theta > r$ &
+        No existe
+        \\ \hline
+        
+      \end{tabular}
+\end{table}    
+
+\strutlongstacks{T}
+\begin{table}[ht!]
+     \centering
+     \hspace*{-4.9cm}\begin{tabular}{|p{1.5cm}|p{5.12cm}|p{2.13cm}|p{1.8cm}|p{2.13cm}|p{4cm}|p{2cm}|}
+        Nombre de las familias de distribuciones paramétricas & 
+        Función de distribución acumulativa $F(\cdot)$ o función de densidad probabilística $f(\cdot)$ & Espacio de Parámetros & 
+        Sig-nificado  $\mu=\epsilon[X]$& 
+        Varianza $\sigma^2=\epsilon[(X-\mu)^2]$ & 
+        Momentos $\mu_r^{'}=\epsilon[(X^r)]$ o $\mu_r^{'}=[(X-\mu)^r]$ y/o $k_r$ acumulativos & 
+        Función generadora de momento $\epsilon[e^{tX}]$\\ 
+        \hline
+        
+        
+        Gumbel o valor extremo &
+        $F(x) = exp(-e^{-(x-\alpha)/\beta})$ &
+        \Longunderstack{
+        $-\infty < \alpha < \infty $ \\ $\beta > 0$
+        \\} &
+        \small 
+        \Longunderstack{
+        $-\alpha + \beta\gamma$ \\ $\gamma \approx$ .577216
+        \\} &
+        \normalsize 
+        $\frac{\pi^2\beta^2}{6}$ &
+        \small
+        $k_r = (-\beta)^r\Psi^{r-1}(1)$ para $r\geq2$ donde $\Psi(\cdot)$ es una función digamma &
+         \normalsize 
+        $e^{\alpha t}\Gamma(1-\beta t)$ para $t<1/\beta$ 
+        \\ \hline
+        
+        Distri-bución t &
+        $f(x) = \frac{\Gamma[(k+1)/2]}{\Gamma(k/2)}
+        \frac{1}{\sqrt{k\pi}}
+        \frac{1}{(1+x^2/k)^{(k+1)/2}}
+        $ &
+        $k>0$ &
+        $\mu = 0$ para $k>1$ &
+        \Longunderstack{
+        $\frac{k}{k-2}$ \\  para $k>2$} &
+        \small
+        \Longunderstack{
+        $\mu_r = 0$, para $k>r$ y $r$ impar \\ \\
+        $\mu_r = \frac{k^{r/2}B((r+1)/2,(k-r)/2)}{B(\frac{1}{2},k/2)}$ \\ \\
+        para $k>r$ y $r$ par \\ \\ } &
+        \normalsize
+        No existe
+        \\ \hline
+        
+        Distri-bución F &
+        \Longunderstack{
+        $f(x) = \frac{\Gamma[(m+n)/2]}{\Gamma(m/2)\Gamma(n/2)}(\frac{m}{n})^{m/2}$ \\ \\
+        x$\frac{x^{(m-2)/2}}{[1+(m/n)x]^{(m+n)/2}}I_{(0,\infty)}(x)$ \\ \\
+        } &
+        $m,n = 1,2,...$ &
+        $\frac{n}{n-2}$ para $n>2$ &
+        \Longunderstack{
+        $\frac{2n^2(m+n-2)}{m(n-2)^2(n-4)}$ \\ 
+        para $n>4$
+        } &
+        \small
+        \Longunderstack{
+        $\mu_r^{'} = (\frac{n}{m})^r \frac{\Gamma(m/2+r)\Gamma(n/2-r)}{\Gamma(m/2\Gamma(n/2))}$\\ \\ para $r<\frac{n}{2}$
+        } &
+        No existe
+        \\ \hline
+        
+        \normalsize
+        Distribu-ción Chi-cuadrado &
+        \small
+        $f(x) = \frac{1}{\Gamma(k/2)}(\frac{1}{2})^{k/2} x^{k/2-1}e^{-(1/2)x}I_{(0,\infty)}(x)$ &
+        \normalsize
+        $k=1,2,...$ &
+        $k$ &
+        $2k$ &
+        $\mu_j^{'} = (\frac{2^j\Gamma(k/2+j)}{\Gamma(k/2)})$ &
+        $(\frac{1}{1-2t})^{k/2}$ para $t<1/2$
+        
+        
+
+      \end{tabular}
+\end{table}
